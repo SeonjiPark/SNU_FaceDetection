@@ -8,7 +8,9 @@ https://arxiv.org/abs/1905.00641
 
 # Environments
 Pytorch 1.7.0
+
 CUDA 11.2 & cuDNN 7.6.5
+
 Python 3.8.8
 
 디렉토리에서 'retinaface.yml'를 다운받은 후 아래와 같이 가상환경 설치
