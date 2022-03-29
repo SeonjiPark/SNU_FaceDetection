@@ -25,49 +25,28 @@ http://shuoyang1213.me/WIDERFACE/
 
 
 # Directory 설명
-|── data
-
-    ├──> sample_widerface 
-    
-         ├──> images : widerface validation set에서 뽑은 10장의 샘플
-         
-    ├──> widerface
-    
-        ├──> train
-        
-            ├──> images : 학습 이미지가 저장되야 하는 폴더
-            
-            └──> label.txt : 적절한 입력 포멧으로 변형한 학습 레이블
-            
-        ├──> val
-        
-            ├──> images : 검증 이미지가 저장되야 하는 폴더
-            
-            └──> label.txt : 적절한 입력 포멧으로 변형한 검증 레이블
-            
-|── layers
-
-    ├──> multibox_loss.py : face bbox, label, landmarks을 한번에 처리하는 loss 모듈
-    
-    └──> prior_box.py : prior box를 생성하는 모듈
-    
-|── models
-
-    ├──> net.py : retinaface 아키텍쳐에 사용되는 모듈 (SSH(=CHM), FPN)
-    
-    └──> retinaface.py : retinaface 전체 아키텍쳐  
-    
-|── utils : 다양한 기타 사용 함수들 폴더
-
-|── config.py : 입력 argument를 관리하는 파일
-
-|── inference.py : inference용 코드 (GT label이 없을 경우 테스트)
-
-|── retinaface.yml : 가상환경 파일
-
-|── test.py : test용 코드(GT label이 있을 경우 테스트)
-
-└── train.py : train용 코드
+    |── data
+        ├──> sample_widerface 
+             ├──> images : widerface validation set에서 뽑은 10장의 샘플
+        ├──> widerface
+            ├──> train
+                ├──> images : 학습 이미지가 저장되야 하는 폴더
+                └──> label.txt : 적절한 입력 포멧으로 변형한 학습 레이블
+            ├──> val
+                ├──> images : 검증 이미지가 저장되야 하는 폴더
+                └──> label.txt : 적절한 입력 포멧으로 변형한 검증 레이블
+    |── layers
+        ├──> multibox_loss.py : face bbox, label, landmarks을 한번에 처리하는 loss 모듈
+        └──> prior_box.py : prior box를 생성하는 모듈
+    |── models
+        ├──> net.py : retinaface 아키텍쳐에 사용되는 모듈 (SSH(=CHM), FPN)
+        └──> retinaface.py : retinaface 전체 아키텍쳐  
+    |── utils : 다양한 기타 사용 함수들 폴더
+    |── config.py : 입력 argument를 관리하는 파일
+    |── inference.py : inference용 코드 (GT label이 없을 경우 테스트)
+    |── retinaface.yml : 가상환경 파일
+    |── test.py : test용 코드(GT label이 있을 경우 테스트)
+    └── train.py : train용 코드
 
 
 
@@ -81,26 +60,21 @@ http://shuoyang1213.me/WIDERFACE/
 
    directory 설명을 참고하여 train, val 이미지 폴더를 배치한다
    
-2) 아래 명령어를 통해 실행한다. 
+2) 아래 명령어를 통해 실행한다.
 
    python train.py --gpu_num={사용할 gpu index, int} --experiment_name={학습결과를 저장할 폴더 이름, string}
-    EX. python train.py --gpu_num=0 --experiment_name='resnet_anc2_casT_fpn3'
+     EX. python train.py --gpu_num=0 --experiment_name='resnet_anc2_casT_fpn3'
    
-   기본 epoch는 8000, batch size는 16으로 되어있으며, 변경하고 싶을 시 
+   기본 epoch는 8000, batch size는 16으로 되어있으며, 변경하고 싶을 시 아래와 같이 추가한다
    
    python train.py --gpu_num=0 --experiment_name='resnet_anc2_casT_fpn3' --epochs={epoch_num} --batch_sixe={batch_size}
    
-   와 같이 config를 추가하여 실행한다. 
-   
 3) 학습이 종료되면 experiments/ 폴더가 아래와 같이 생성된다
-
-   |── experiments
-   
-       ├──> {experiment_name}
-       
-           ├──> log : 학습과정의 log 파일 (학습 실패 시에도 본 파일 참고)
-           
-           └──> ckpt : 학습과정 중의 가장 결과가 좋은 체크포인트 파일 저장
+               
+        |── experiments
+           ├──> {experiment_name}
+                ├──> log : 학습과정의 log 파일 (학습 실패 시에도 본 파일 참고)
+                └──> ckpt : 학습과정 중의 가장 결과가 좋은 체크포인트 파일 저장
            
 
 
@@ -124,8 +98,7 @@ GT label이 존재하는 dataset에 대해서는 아래 코드를 통해 테스�
    
     EX. python test.py --gpu_num=0 --experiment_name='resnet_anc2_casT_fpn3'
     
-3)10장 단위로 테스트 진행 과정을 출력하며, 테스트가 종료되면 테스트에 걸린 시간과 AP 결과를   
-./experiments/{exp_name}/results/results.txt에 저장한다
+3) 10장 단위로 테스트 진행 과정을 출력하며, 테스트가 종료되면 테스트에 걸린 시간과 AP 결과를  ./experiments/{exp_name}/results/results.txt에 저장한다
 
 
 === Inference ===
@@ -160,11 +133,9 @@ GT label이 존재하지 않는 dataset에 대해서는 아래 코드를 통해 
 
    **주의 : --inference_save_folder를 지정하지 않고 실행 시 덮어씌워질 수 있음
    
-   |── inference_results
-   
-       ├──> result_images: --save_img=True를 줬을 시 inference 이미지를 저장
-       
-       └──> exp_name_inference_results.txt: image 이름과 그 bbox, 신뢰도 결과값을 결과로 저장. 
+        |── inference_results
+           ├──> result_images: --save_img=True를 줬을 시 inference 이미지를 저장
+           └──> exp_name_inference_results.txt: image 이름과 그 bbox, 신뢰도 결과값을 결과로 저장. 
        
    
    
