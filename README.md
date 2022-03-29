@@ -57,10 +57,13 @@ http://shuoyang1213.me/WIDERFACE/
 ## === Train ===
 학습용 코드 - train.py
 
-### 1) 위 dataset 다운 주소를 참고하여 widerface train, validation dataset을 다운받고, directory 설명을 참고하여 train, val 이미지 폴더를 배치한다
+### 1) dataset 준비
+   위 dataset 다운 주소를 참고하여 widerface train, validation dataset을 다운받고, directory 설명을 참고하여 train, val 이미지 폴더를 배치한다
    
-### 2) 아래 명령어를 통해 실행한다
+### 2) 실행
 
+   아래 명령어를 통해 실행한다
+   
    python train.py --gpu_num={사용할 gpu index, int} --experiment_name={학습결과를 저장할 폴더 이름, string}
      EX. python train.py --gpu_num=0 --experiment_name='resnet_anc2_casT_fpn3'
    
@@ -68,7 +71,8 @@ http://shuoyang1213.me/WIDERFACE/
    
    python train.py --gpu_num=0 --experiment_name='resnet_anc2_casT_fpn3' --epochs={epoch_num} --batch_sixe={batch_size}
    
-### 3) 학습이 종료되면 experiments/ 폴더가 아래와 같이 생성된다
+### 3) 결과 저장
+   학습이 종료되면 experiments/ 폴더가 아래와 같이 생성된다
                
         |── experiments
            ├──> {experiment_name}
@@ -90,15 +94,18 @@ GT label이 존재하는 dataset에 대해서는 아래 코드를 통해 테스�
 
 테스트용 코드 - test.py (GT 존재해서 AP 측정 가능할 때)
 
-### 1) ./data/widerface/val/images 내에 있는 폴더에 대해 테스트를 진행한다
+### 1) 데이터셋 확인
+   ./data/widerface/val/images 내에 있는 폴더에 대해 테스트를 진행한다
 
-### 2) 아래 명령어를 통해 실행한다. 
+### 2) 코드 실행
+   아래 명령어를 통해 실행한다. 
  
    python test.py --gpu_num={사용할 gpu index, int} --experiment_name={테스트에 사용할 ckpt 폴더가 저장된 폴더}
    
     EX. python test.py --gpu_num=0 --experiment_name='resnet_anc2_casT_fpn3'
     
-### 3) 10장 단위로 테스트 진행 과정을 출력하며, 테스트가 종료되면 테스트에 걸린 시간과 AP 결과를  ./experiments/{exp_name}/results/results.txt에 저장한다
+### 3) 결과 저장
+   10장 단위로 테스트 진행 과정을 출력하며, 테스트가 종료되면 테스트에 걸린 시간과 AP 결과를  ./experiments/{exp_name}/results/results.txt에 저장한다
 
 
 ## === Inference ===
@@ -107,9 +114,12 @@ GT label이 존재하지 않는 dataset에 대해서는 아래 코드를 통해 
 
 테스트용 코드2 - inference.py (GT 존재하지 않아서 AP 측정 불가능)
 
-### 1) ./data/{dataset이름}/images/ 폴더를 만들어 inference용 이미지를 넣는다
+### 1) dataset
+   ./data/{dataset이름}/images/ 폴더를 만들어 inference용 이미지를 넣는다
 
-### 2) 아래 명령어를 통해 테스트를 실행한다. 
+### 2) 코드 실행
+
+   아래 명령어를 통해 테스트를 실행한다. 
  
    python inference.py 
    
@@ -129,7 +139,8 @@ GT label이 존재하지 않는 dataset에 대해서는 아래 코드를 통해 
     EX. python inference.py --gpu_num=0 --experiment_name='resnet_anc2_casT_fpn3' --inference_dir='sample_widerface/images/' --infer_imsize_same=False --save_img=True --inference_save_folders='inference_results'
     
     
-### 3) 10장 단위로 테스트 진행과정을 출력하며, test가 종료된 후에는 ./inference_results 폴더에 결과가 저장된다.
+### 3) 결과 저장
+   10장 단위로 테스트 진행과정을 출력하며, test가 종료된 후에는 ./inference_results 폴더에 결과가 저장된다.
 
    **주의 : --inference_save_folder를 지정하지 않고 실행 시 덮어씌워질 수 있음
    
