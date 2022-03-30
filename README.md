@@ -1,10 +1,22 @@
 # SNU_FaceDetection
 
-# Reference paper
-
+# Reference
+### paper:
 [RetinaFace: Single-Shot Multi-Level Face Localisation in the Wild] (CVPR 2020)
 
 https://openaccess.thecvf.com/content_CVPR_2020/html/Deng_RetinaFace_Single-Shot_Multi-Level_Face_Localisation_in_the_Wild_CVPR_2020_paper.html
+
+    @inproceedings{deng2020retinaface,
+      title={Retinaface: Single-shot multi-level face localisation in the wild},
+      author={Deng, Jiankang and Guo, Jia and Ververas, Evangelos and Kotsia, Irene and Zafeiriou, Stefanos},
+      booktitle={Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition},
+      pages={5203--5212},
+      year={2020}
+    }
+    
+### code: 
+아래 github 의 아키텍쳐를 참고하여 multi-stage로 재현함
+https://github.com/biubug6/Pytorch_Retinaface
 
 # 실행 결과 예시 
 <img src="https://user-images.githubusercontent.com/57519896/160752508-9d09c9d8-c592-497b-ae56-45ccf2cdd97a.jpg" width="512" height="343"/>
