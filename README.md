@@ -2,9 +2,9 @@
 
 # Reference paper
 
-[RetinaFace: Single-stage Dense Face Localisation in the Wild]
+[RetinaFace: Single-Shot Multi-Level Face Localisation in the Wild] (CVPR 2020)
 
-https://arxiv.org/abs/1905.00641
+https://openaccess.thecvf.com/content_CVPR_2020/html/Deng_RetinaFace_Single-Shot_Multi-Level_Face_Localisation_in_the_Wild_CVPR_2020_paper.html
 
 
 # Environments
