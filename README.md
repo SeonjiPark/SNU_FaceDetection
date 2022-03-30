@@ -6,6 +6,9 @@
 
 https://openaccess.thecvf.com/content_CVPR_2020/html/Deng_RetinaFace_Single-Shot_Multi-Level_Face_Localisation_in_the_Wild_CVPR_2020_paper.html
 
+# 실행 결과 예시 
+<img src="https://user-images.githubusercontent.com/57519896/160752508-9d09c9d8-c592-497b-ae56-45ccf2cdd97a.jpg" width="512" height="343"/>
+<img src="https://user-images.githubusercontent.com/57519896/160752511-81d432ed-0d88-4683-a158-ee1e70dbaa57.jpg" width="512" height="384"/>
 
 # Environments
 Pytorch 1.7.0
@@ -36,6 +39,9 @@ http://shuoyang1213.me/WIDERFACE/
             ├──> val
                 ├──> images : 검증 이미지가 저장되야 하는 폴더
                 └──> label.txt : 적절한 입력 포멧으로 변형한 검증 레이블
+    |── inference_results
+        ├──> result_images : widerface sample 이미지에 대한 실행 결과 이미지 (bbox, confidence 포함)
+        └──> resnet_anc2_casT_fpn3_inference_results.txt : widerface sample 이미지에 대한 실행 결과 (bbox, confidence를 저장)
     |── layers
         ├──> multibox_loss.py : face bbox, label, landmarks을 한번에 처리하는 loss 모듈
         └──> prior_box.py : prior box를 생성하는 모듈
