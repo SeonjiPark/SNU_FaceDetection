@@ -16,6 +16,7 @@ https://openaccess.thecvf.com/content_CVPR_2020/html/Deng_RetinaFace_Single-Shot
     
 ### code: 
 아래 github 의 아키텍쳐를 참고하여 multi-stage로 재현함
+
 https://github.com/biubug6/Pytorch_Retinaface
 
 # 실행 결과 예시 
