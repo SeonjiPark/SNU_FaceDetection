@@ -155,7 +155,7 @@ GT label이 존재하지 않는 dataset에 대해서는 아래 코드를 통해 
    --inference_save_folder={결과 이미지를 저장할 폴더 이름, default='inference_results'}
    
    
-    python inference.py --gpu_num=0 --experiment_name='resnet_anc2_casT_fpn3' --inference_dir='sample_widerface/images/' --infer_imsize_same=False --save_img=True --inference_save_folder='inference_results'
+    python inference.py --gpu_num=0 --experiment_name='resnet_anc2_casT_fpn3' --inference_dir='sample_widerface/images/' --infer_imsize_same=False --save_img=True --inference_save_folder='inference_results/'
     
     
 ### 3) 결과 저장
