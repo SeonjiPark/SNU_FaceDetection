@@ -155,7 +155,7 @@ GT label이 존재하지 않는 dataset에 대해서는 아래 코드를 통해 
    --inference_save_folder={결과 이미지를 저장할 폴더 이름, default='inference_results'}
    
    
-    python inference.py --gpu_num=0 --experiment_name='resnet_anc2_casT_fpn3' --inference_dir='sample_widerface/images/' --infer_imsize_same=False --save_img=True --inference_save_folder='inference_results/'
+    python inference.py --gpu_num=0 --inference_dir='sample_widerface/images/' --save_img=True --inference_save_folder='inference_results/'
     
     
 ### 3) 결과 저장
@@ -178,7 +178,7 @@ GT label이 존재하지 않는 dataset에 대해서는 아래 코드를 통해 
     pip install torch==1.7.0
     pip install torchvision=0.8.1
     
-    python inference.py --gpu_num=0 --experiment_name='resnet_anc2_casT_fpn3' --inference_dir='sample_mask/images/' --save_img=True --inference_save_folder='mask_results/'
+    python inference.py --gpu_num=0 --inference_dir='sample_mask/images/' --save_img=True --inference_save_folder='mask_results/' --mask True
     
    
    10장 단위로 테스트 진행과정을 출력하며, test가 종료된 후에는 ./inference_results 폴더에 결과가 저장된다.
