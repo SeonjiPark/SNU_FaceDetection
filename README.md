@@ -166,6 +166,28 @@ GT label이 존재하지 않는 dataset에 대해서는 아래 코드를 통해 
         |── inference_results
            ├──> result_images: --save_img=True를 줬을 시 inference 이미지를 저장
            └──> exp_name_inference_results.txt: image 이름과 그 bbox, 신뢰도 결과값을 결과로 저장. 
-       
+           
+
+### 4) mak 추출
+
+   source code: https://google.github.io/mediapipe/solutions/selfie_segmentation.html
+   
+    conda deactivate # retinaface가 켜져있는 경우
+    python3 -m venv mp_env && source mp_env/bin/activate
+    pip install mediapipe
+    pip install torch==1.7.0
+    pip install torchvision=0.8.1
+    
+    python inference.py --gpu_num=0 --experiment_name='resnet_anc2_casT_fpn3' --inference_dir='sample_mask/images/' --save_img=True --inference_save_folder='mask_results/'
+    
+   
+   10장 단위로 테스트 진행과정을 출력하며, test가 종료된 후에는 ./inference_results 폴더에 결과가 저장된다.
+
+   **주의 : --inference_save_folder를 지정하지 않고 실행 시 덮어씌워질 수 있음
+   
+        |── inference_results
+           ├──> result_images: --save_img=True를 줬을 시 inference 이미지를 저장
+           └──> exp_name_inference_results.txt: image 이름과 그 bbox, 신뢰도 결과값을 결과로 저장. 
+           
    
    
