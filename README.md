@@ -176,7 +176,7 @@ GT label이 존재하지 않는 dataset에 대해서는 아래 코드를 통해 
     python3 -m venv mp_env && source mp_env/bin/activate
     pip install mediapipe
     pip install torch==1.7.0
-    pip install torchvision=0.8.1
+    pip install torchvision==0.8.1
     
     python inference.py --gpu_num=0 --inference_dir='sample_mask/images/' --save_img=True --inference_save_folder='mask_results/' --mask True
     
