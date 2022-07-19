@@ -13,6 +13,9 @@ from config import parse_args
 from models.retinaface import RetinaFace
 from utils.helpers import *
 
+import mediapipe as mp
+mp_drawing = mp.solutions.drawing_utils
+mp_selfie_segmentation = mp.solutions.selfie_segmentation
 
 def inference(args):
 
@@ -37,6 +40,8 @@ def inference(args):
     NMS_THRESHOLD = 0.3
     SAVE_FOLDER = args.inference_save_folder
     SAVE_IMG = args.save_img
+
+    MASK = args.mask
 
     create_path(SAVE_FOLDER)
 
@@ -99,12 +104,13 @@ def inference(args):
     avg_ntime = 0
 
     result_bboxes = []
-    f1 = open(SAVE_FOLDER + '/' + EXP_NAME + '_' + 'inference_results.txt', 'w')
+    f1 = open(os.path.join(SAVE_FOLDER,'inference_results.txt'), 'w')
 
     for i, img_name in enumerate(img_path):
 
         # Obtain data / to GPU
         img_raw = cv2.imread(img_path[i], cv2.IMREAD_COLOR)
+        mask_img = img_raw.copy()
 
         img = img_raw.astype(np.float32)
         img -= rgb_mean
@@ -179,6 +185,43 @@ def inference(args):
         avg_ftime += f_ftime
         avg_dtime += f_dtime
         avg_ntime += f_ntime
+
+        if MASK:
+            # BG_COLOR = (192, 192, 192)  # gray
+            BG_COLOR = (0, 0, 0)  # black
+            MASK_COLOR = (255, 255, 255)  # white
+            create_path(os.path.join(SAVE_FOLDER, 'masks'))
+            create_path(os.path.join(SAVE_FOLDER, 'faces'))
+            with mp_selfie_segmentation.SelfieSegmentation(model_selection=0) as selfie_segmentation:
+                image_height, image_width, _ = mask_img.shape
+                # Convert the BGR image to RGB before processing.
+                results = selfie_segmentation.process(cv2.cvtColor(mask_img, cv2.COLOR_BGR2RGB))
+
+                # Draw selfie segmentation on the background image.
+                # To improve segmentation around boundaries, consider applying a joint
+                # bilateral filter to "results.segmentation_mask" with "image".
+                condition = np.stack((results.segmentation_mask,) * 3, axis=-1) > 0.1
+                # Generate solid color images for showing the output selfie segmentation mask.
+                fg_image = np.zeros(mask_img.shape, dtype=np.uint8)
+                fg_image[:] = MASK_COLOR
+                bg_image = np.zeros(mask_img.shape, dtype=np.uint8)
+                bg_image[:] = BG_COLOR
+                output_image = np.where(condition, fg_image, bg_image)
+
+                for idx, b in enumerate(dets):
+                    b = list(map(int, b))
+
+                    cx, cy, w, h = (b[0]+b[2])//2, (b[1]+b[3])//2, (b[2] - b[0]), (b[3] - b[1])
+                    new_x1, new_y1, new_x2, new_y2 = int(cx - w), int(cy - h), int(cx + w), int(cy + h)
+                    new_x1, new_y1 = max(0, new_x1), max(0, new_y1)
+                    new_x2, new_y2 = min(image_width, new_x2), min(image_height, new_y2)
+
+                    mask_image = output_image[new_y1:new_y2, new_x1:new_x2, :]
+                    face_image = mask_img[new_y1:new_y2, new_x1:new_x2, :]
+
+                    original_img_name, original_img_format = img_name.split(".")
+                    cv2.imwrite(os.path.join(SAVE_FOLDER, 'masks', original_img_name + '_' + str(idx) + '.' + original_img_format), mask_image)
+                    cv2.imwrite(os.path.join(SAVE_FOLDER, 'faces', original_img_name + '_' + str(idx) + '.' + original_img_format), face_image)
 
         if i % 10 == 0:
             print('im_detect: {:d}/{:d} forward_pass_time: {:.4f}s decode: {:.4f}s nms: {:.4f}s'.format(i + 1, num_images, f_ftime, f_dtime, f_ntime))

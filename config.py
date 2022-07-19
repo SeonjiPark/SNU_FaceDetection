@@ -20,7 +20,7 @@ def parse_training_args(parser):
     parser.add_argument('--inference_dir', type=str, default="sample_widerface/images/",
                         help='widerface, etc')
 
-    parser.add_argument('--experiment_name', type=str, default='default/',
+    parser.add_argument('--experiment_name', type=str, default='resnet_anc2_casT_fpn3',
                         help='Experiment Name directory')
 
     # Inference parameters
@@ -30,8 +30,11 @@ def parse_training_args(parser):
     parser.add_argument('--inference_save_folder', type=str, default='inference_results/',
                         help='Dir to save txt results')
 
-    parser.add_argument('--infer_imsize_same', type=str2bool, default=True,
+    parser.add_argument('--infer_imsize_same', type=str2bool, default=False,
                         help='Whether inference image size different or not')
+
+    parser.add_argument('--mask', type=str2bool, default=False,
+                        help='Detecting Mask or Not')
 
 
 def parse_args():
