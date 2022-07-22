@@ -172,7 +172,8 @@ GT label이 존재하지 않는 dataset에 대해서는 아래 코드를 통해 
 
    source code: https://google.github.io/mediapipe/solutions/selfie_segmentation.html
    
-    conda deactivate # retinaface가 켜져있는 경우
+    conda deactivate # 위의 detection inference를 따라 retinaface env가 켜져있는 경우
+    
     python3 -m venv mp_env && source mp_env/bin/activate
     pip install mediapipe
     pip install torch==1.7.0
