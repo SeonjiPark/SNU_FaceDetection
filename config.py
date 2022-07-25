@@ -36,6 +36,9 @@ def parse_training_args(parser):
     parser.add_argument('--mask', type=str2bool, default=False,
                         help='Detecting Mask or Not')
 
+    parser.add_argument('--save_mask', type=str2bool, default=False,
+                        help='Detecting Mask or Not')
+
 
 def parse_args():
     """Initializes a parser and reads the command line parameters.
