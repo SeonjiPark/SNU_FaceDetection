@@ -198,6 +198,8 @@ GT label이 존재하지 않는 dataset에 대해서는 아래 코드를 통해 
    
    코드 상 return하는 값은 inference.py L 282를 참고하여 아래와 같다
    
+   * head = face를 정중앙으로 하여 face보다 h, w 모두 4배 크게 잡은 영역 (mask segmentation의 input으로 들어감) 
+   
    result_bboxes, face_bboxes, face_masks, head_bboxes, head_masks = result
    
    result_bboxes: 전체 이미지에서 face bbox의 좌표 [x1, y1, x2, y2]
@@ -212,7 +214,7 @@ GT label이 존재하지 않는 dataset에 대해서는 아래 코드를 통해 
    
    #### 비고: 인물들이 많이 겹쳐져 있을 수록 mask segmentation의 성능이 저하 됨
    
-   #### 결과 예시
+   #### head_masks의 결과 예시
    
    
    ![6788_origin_40_0_face](https://user-images.githubusercontent.com/57519896/180708146-80a8e147-79e9-45d0-b58c-e4160c94c75a.png)
