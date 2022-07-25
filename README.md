@@ -34,6 +34,8 @@ Python 3.8.8
 
 conda env create -f retinaface.yml
 
+### 마스크 추출 시에는 retinaface.yml을 설치하지 않고 아래 4) mask 추출로 내려가서 
+    python3 -m venv mp_env && source mp_env/bin/activate
 
 # Dataset 다운 주소
 train/val/test dataset - widerface
