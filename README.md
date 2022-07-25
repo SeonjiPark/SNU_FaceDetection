@@ -182,7 +182,7 @@ GT label이 존재하지 않는 dataset에 대해서는 아래 코드를 통해 
     pip install torchvision==0.8.1
     pip install opencv-python
     
-    python inference.py --gpu_num=0 --inference_dir='sample_mask/images/' --inference_save_folder='mask_results/' --mask True --mask_save True
+    python inference.py --gpu_num=0 --inference_dir='sample_mask/images/' --inference_save_folder='mask_results/' --mask True --save_mask True
     
    
    10장 단위로 테스트 진행과정을 출력하며, test가 종료된 후에는 --inference_save_folder로 지정한 폴더에 아래 결과가 저장된다.
@@ -200,7 +200,7 @@ GT label이 존재하지 않는 dataset에 대해서는 아래 코드를 통해 
    
    * head = face를 정중앙으로 하여 face보다 h, w 모두 4배 크게 잡은 영역 (mask segmentation의 input으로 들어감) 
    
-   result_bboxes, face_bboxes, face_masks, head_bboxes, head_masks = result
+    result_bboxes, face_bboxes, face_masks, head_bboxes, head_masks = result
    
    result_bboxes: 전체 이미지에서 face bbox의 좌표 [x1, y1, x2, y2]
    
