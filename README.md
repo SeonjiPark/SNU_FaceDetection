@@ -182,17 +182,40 @@ GT label이 존재하지 않는 dataset에 대해서는 아래 코드를 통해 
     pip install torchvision==0.8.1
     pip install opencv-python
     
-    python inference.py --gpu_num=0 --inference_dir='sample_mask/images/' --inference_save_folder='mask_results/' --mask True
+    python inference.py --gpu_num=0 --inference_dir='sample_mask/images/' --inference_save_folder='mask_results/' --mask True --mask_save True
     
    
-   10장 단위로 테스트 진행과정을 출력하며, test가 종료된 후에는 ./inference_results 폴더에 결과가 저장된다.
+   10장 단위로 테스트 진행과정을 출력하며, test가 종료된 후에는 --inference_save_folder로 지정한 폴더에 아래 결과가 저장된다.
 
    **주의 : --inference_save_folder를 지정하지 않고 실행 시 덮어씌워질 수 있음
    
         |── mask_results
-           ├──> masks:{기존 image_name + face idx}  mask 이미지가 저장 됨}
+           ├──> masks:{기존 image_name + face idx}  face mask(tight한 mask) 이미지가 저장 됨}
            ├──> faces:{기존 image_name + face idx} 얼굴 이미지가 저장 됨}
+           ├──> head_masks:{기존 image_name + face idx}  head mask 이미지가 저장 됨}
            └──> exp_name_inference_results.txt: image 이름과 detection bbox, 신뢰도 결과값을 결과로 저장. 
            
    
+   코드 상 return하는 값은 inference.py L 282를 참고하여 아래와 같다
    
+   result_bboxes, face_bboxes, face_masks, head_bboxes, head_masks = result
+   
+   result_bboxes: 전체 이미지에서 face bbox의 좌표 [x1, y1, x2, y2]
+   
+   face_bboxes: head 이미지에서 face bbox의 좌표 [x1, y1, x2, y2]
+   
+   face_masks: face의 mask 이미지 [H, W, C]
+   
+   head_bboxes: 전체 이미지에서 head bbox의 좌표 [x1, y1, x2, y2]
+   
+   head_masks: head의 mask 이미지 [H, W, C]
+   
+   #### 비고: 인물들이 많이 겹쳐져 있을 수록 mask segmentation의 성능이 저하 됨
+   
+   #### 결과 예시
+   
+   
+   ![6788_origin_40_0_face](https://user-images.githubusercontent.com/57519896/180708146-80a8e147-79e9-45d0-b58c-e4160c94c75a.png)
+   
+   ![6788_origin_40_0_mask](https://user-images.githubusercontent.com/57519896/180708230-aa728bf1-a07b-498d-9819-fd1a28d64068.png)
+
