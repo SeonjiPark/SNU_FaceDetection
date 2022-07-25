@@ -238,9 +238,9 @@ def inference(args):
 
                     if SAVE_MASK:
                         original_img_name, original_img_format = img_name.split(".")
-                        cv2.imwrite(os.path.join(SAVE_FOLDER, 'masks', original_img_name + '_' + str(idx) + '.' + original_img_format), mask)
-                        cv2.imwrite(os.path.join(SAVE_FOLDER, 'faces', original_img_name + '_' + str(idx) + '.' + original_img_format), head)
-                        cv2.imwrite(os.path.join(SAVE_FOLDER, 'head_masks', original_img_name + '_' + str(idx) + '.' + original_img_format), mask[CY-H:CY+H, CX-W:CX+W, :])
+                        cv2.imwrite(os.path.join(SAVE_FOLDER, 'head_masks', original_img_name + '_' + str(idx) + '.' + original_img_format), mask)
+                        cv2.imwrite(os.path.join(SAVE_FOLDER, 'heads', original_img_name + '_' + str(idx) + '.' + original_img_format), head)
+                        cv2.imwrite(os.path.join(SAVE_FOLDER, 'masks', original_img_name + '_' + str(idx) + '.' + original_img_format), mask[CY-H:CY+H, CX-W:CX+W, :])
 
 
                 result_face_masks.append(face_masks)
@@ -280,8 +280,4 @@ if __name__=="__main__":
     args = parse_args()
     result = inference(args)
     result_bboxes, face_bboxes, face_masks, head_bboxes, head_masks = result
-    print(face_bboxes[0])
-    print(face_masks[0][0].shape)
-    print(head_bboxes[0])
-    print(head_masks[0][0].shape)
     print("Done!")
