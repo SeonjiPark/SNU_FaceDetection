@@ -207,9 +207,26 @@ GT label이 존재하지 않는 dataset에 대해서는 아래 코드를 통해 
    
    input 이미지
    
-   <img width="300" alt="스크린샷 2022-07-26 오후 6 50 59" src="https://user-images.githubusercontent.com/57519896/180977996-036d43e6-9d89-4888-ae75-b56b3622c2c6.png">
+   <img width="400" alt="스크린샷 2022-07-26 오후 6 50 59" src="https://user-images.githubusercontent.com/57519896/180977996-036d43e6-9d89-4888-ae75-b56b3622c2c6.png">
    
    face detection 결과 
    
-   ![48018_origin_49](https://user-images.githubusercontent.com/57519896/180978262-771274ec-ed7d-4443-9047-33bd25ea4e2e.png)
+   <img width="400" src="https://user-images.githubusercontent.com/57519896/180978262-771274ec-ed7d-4443-9047-33bd25ea4e2e.png">
+   
+   head 이미지
+   
+   ![48018_origin_49_0](https://user-images.githubusercontent.com/57519896/180978750-adb03bf8-3033-4211-adcf-9c8f7746d657.png)
+   
+   head_mask 이미지 
+   
+   ![48018_origin_49_0](https://user-images.githubusercontent.com/57519896/180978796-9538e26c-a889-43fc-b241-872b7ec0ec20.png)
+   
+   face 이미지
+   
+   ![48018_origin_49_0](https://user-images.githubusercontent.com/57519896/180978829-b9969d6b-bcbf-4948-8ff0-abb51d7bdfeb.png)
+   
+   mask 이미지 
+   
+   ![48018_origin_49_0](https://user-images.githubusercontent.com/57519896/180978864-4117262c-53af-4eec-b414-d6c31d3f37a6.png)
+
   
