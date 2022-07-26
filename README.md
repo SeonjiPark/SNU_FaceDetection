@@ -24,12 +24,6 @@ https://github.com/biubug6/Pytorch_Retinaface
 <img src="https://user-images.githubusercontent.com/57519896/160752511-81d432ed-0d88-4683-a158-ee1e70dbaa57.jpg" width="512" height="384"/>
 
 # Environments
-Pytorch 1.7.0
-
-CUDA 11.2 & cuDNN 7.6.5
-
-Python 3.8.8
-
 ```
 conda create -n ENV_NAME python=3.7
 
