@@ -32,7 +32,9 @@ Python 3.8.8
 
 디렉토리에서 'retinaface.yml'를 다운받은 후 아래와 같이 가상환경 설치
 
+```
 conda env create -f retinaface.yml
+```
 
 ### * 마스크 추출 시에는 retinaface.yml을 설치하지 않고 아래처럼 "4) mask 추출" 참고하여 가상환경 만들기
     python3 -m venv mp_env && source mp_env/bin/activate
@@ -170,7 +172,7 @@ GT label이 존재하지 않는 dataset에 대해서는 아래 코드를 통해 
            └──> exp_name_inference_results.txt: image 이름과 그 bbox, 신뢰도 결과값을 결과로 저장. 
            
 
-### 4) mak 추출
+### 4) mask 추출
 
    source code: https://google.github.io/mediapipe/solutions/selfie_segmentation.html
    
