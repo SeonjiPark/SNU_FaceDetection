@@ -225,7 +225,7 @@ GT label이 존재하지 않는 dataset에 대해서는 아래 코드를 통해 
    
    ![48018_origin_49_0](https://user-images.githubusercontent.com/57519896/180978829-b9969d6b-bcbf-4948-8ff0-abb51d7bdfeb.png)
    
-   mask 이미지 
+   face_mask 이미지 
    
    ![48018_origin_49_0](https://user-images.githubusercontent.com/57519896/180978864-4117262c-53af-4eec-b414-d6c31d3f37a6.png)
 
