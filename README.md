@@ -203,10 +203,13 @@ GT label이 존재하지 않는 dataset에 대해서는 아래 코드를 통해 
    
    #### 비고: 인물들이 많이 겹쳐져 있을 수록 mask segmentation의 성능이 저하 됨
    
-   #### head_masks의 결과 예시
+   #### 결과 예시
    
+   input 이미지
    
-   ![6788_origin_40_0_face](https://user-images.githubusercontent.com/57519896/180708146-80a8e147-79e9-45d0-b58c-e4160c94c75a.png)
+   <img width="300" alt="스크린샷 2022-07-26 오후 6 50 59" src="https://user-images.githubusercontent.com/57519896/180977996-036d43e6-9d89-4888-ae75-b56b3622c2c6.png">
    
-   ![6788_origin_40_0_mask](https://user-images.githubusercontent.com/57519896/180708230-aa728bf1-a07b-498d-9819-fd1a28d64068.png)
-
+   face detection 결과 
+   
+   ![48018_origin_49](https://user-images.githubusercontent.com/57519896/180978262-771274ec-ed7d-4443-9047-33bd25ea4e2e.png)
+  
