@@ -30,12 +30,14 @@ CUDA 11.2 & cuDNN 7.6.5
 
 Python 3.8.8
 
+```
 conda create -n ENV_NAME python=3.7
 
 pip install mediapipe
 pip install torch==1.7.0
 pip install torchvision==0.8.1
 pip install opencv-python
+```
 
 
 # Dataset 다운 주소
