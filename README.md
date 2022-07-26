@@ -30,14 +30,13 @@ CUDA 11.2 & cuDNN 7.6.5
 
 Python 3.8.8
 
-디렉토리에서 'retinaface.yml'를 다운받은 후 아래와 같이 가상환경 설치
+conda create -n ENV_NAME python=3.7
 
-```
-conda env create -f retinaface.yml
-```
+pip install mediapipe
+pip install torch==1.7.0
+pip install torchvision==0.8.1
+pip install opencv-python
 
-### * 마스크 추출 시에는 retinaface.yml을 설치하지 않고 아래처럼 "4) mask 추출" 참고하여 가상환경 만들기
-    python3 -m venv mp_env && source mp_env/bin/activate
 
 # Dataset 다운 주소
 train/val/test dataset - widerface
@@ -176,14 +175,6 @@ GT label이 존재하지 않는 dataset에 대해서는 아래 코드를 통해 
 
    source code: https://google.github.io/mediapipe/solutions/selfie_segmentation.html
    
-    conda deactivate # 위의 detection inference를 따라 retinaface env가 켜져있는 경우
-    
-    python3 -m venv mp_env && source mp_env/bin/activate
-    pip install mediapipe
-    pip install torch==1.7.0
-    pip install torchvision==0.8.1
-    pip install opencv-python
-    
     python inference.py --gpu_num=0 --inference_dir='sample_mask/images/' --inference_save_folder='mask_results/' --mask True --save_mask True
     
    
