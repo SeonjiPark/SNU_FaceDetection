@@ -22,6 +22,45 @@ def parse_training_args(parser):
 
     parser.add_argument('--experiment_name', type=str, default='resnet_anc2_casT_fpn3',
                         help='Experiment Name directory')
+    
+    parser.add_argument('--model_version', type=str, default='retina',
+                        help='Model version whether retina or tina')
+    
+    parser.add_argument('--model_weight', type=str, default="ckpt-best.pth",
+                    help='Test Model ckpt name')
+    
+    
+    parser.add_argument('--num_anchor', type=int, default=2,
+                        help='Number of anchor - should be 2 or 3')
+    
+    parser.add_argument('--landmark_loss', type=str2bool, default=True,
+                        help='whether to use landmark loss or not')
+    
+    parser.add_argument('--cascade', type=str2bool, default=True,
+                        help='whether to use cascade module or not')
+    
+    parser.add_argument('--inception', type=str2bool, default=False,
+                        help='whether to use inception module or not')
+    
+    parser.add_argument('--diou', type=str2bool, default=False,
+                        help='whether to use DIoU Loss or not. AWARE: this option should be used with --inception=True')
+    
+    parser.add_argument('--im_size', type=int, default=640,
+                        help='Crop image size, default = 640')
+    
+    parser.add_argument('--lr', type=float, default=1e-3,
+                        help='learning rate')
+    
+    parser.add_argument('--lr_step', type=int, default=10,
+                        help='learning rate step size')
+    
+    parser.add_argument('--opt', type=str, default='SGD',
+                        help='Optimizer type')
+
+
+    parser.add_argument('--dataset', type=str, default='widerface/',
+                        help='Dir to dataset')
+    
 
     # Inference parameters
     parser.add_argument('--save_img', type=str2bool, default=False,

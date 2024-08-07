@@ -33,13 +33,14 @@ EXP_DIR = 'experiments/' + EXP_NAME
 CKPT_DIR = os.path.join(EXP_DIR, "ckpt/")
 LOG_DIR = os.path.join(EXP_DIR, "log/")
 IMG_DIR = os.path.join(EXP_DIR, 'img/')
-WEIGHTS = "ckpt-best.pth"
+WEIGHTS = args.model_weight
 
 # Inference Parameters
 CONFIDENCE_THRESHOLD = 0.02
 NMS_THRESHOLD = 0.3
 EXP_NAME = args.experiment_name
 RES_DIR = 'experiments/' + EXP_NAME + '/results/'
+NUM_ANCHOR = args.num_anchor
 
 # Set up dataset
 test_dataset = Dataset('val', preproc(img_dim=None, rgb_means=(104, 117, 123)))
@@ -65,7 +66,8 @@ num_images = len(test_dataset)
 f.write("Number of test images: " + str(num_images) + "\n\n")
 
 # Set up Network
-net = RetinaFace(phase='test')
+# net = RetinaFace(phase='test')
+net = RetinaFace(phase='test', version=args.model_version, anchor_num=NUM_ANCHOR, use_inception=args.inception, cascade=args.cascade)
 output_path = CKPT_DIR + NETWORK + '_' + WEIGHTS
 checkpoint = torch.load(output_path)
 f.write("Start loading weights...\n")
@@ -90,12 +92,17 @@ for i, data in enumerate(test_dataloader):
     targets = [anno.cuda() for anno in targets]
 
     # Forward
-    _, out = net(img)
+    # _, out = net(img)
+    if args.cascade:
+        _, out = net(img)
+    else:
+        out, _ = net(img)
 
-    loc, conf, landms = out
+    # loc, conf, landms = out
+    loc, conf, landms, ious = out
 
     # Decode
-    scores, boxes, landms = decode_output(img, loc, conf, landms, device)
+    scores, boxes, landms = decode_output(img, loc, conf, landms, device, NUM_ANCHOR)
 
     # NMS
     dets = do_nms(scores, boxes, landms, CONFIDENCE_THRESHOLD, NMS_THRESHOLD)
