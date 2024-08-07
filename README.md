@@ -104,6 +104,10 @@ http://shuoyang1213.me/WIDERFACE/
 
 혹은 아래 링크에서 미리 학습한 ckpt 파일(resnet_anc2_casT_fpn3)을 다운 받아 experiments 폴더를 생성한 후 그 안에 배치한다. 
 
+(2024년 업데이트 weight)
+구글 드라이브 주소: https://drive.google.com/drive/folders/11ZVjvwctmiO9bPbnVqmn97GX8gGJj_01?usp=sharing
+
+아래 링크에서 이전 버전의 weight 확인 가능 
 구글 드라이브 주소 : https://drive.google.com/drive/folders/1bbxIfmmlhs33uBkTasL6ksnPfabFFpNI?usp=sharing
 
 
@@ -120,7 +124,7 @@ GT label이 존재하는 dataset에 대해서는 아래 코드를 통해 테스�
  
    python test.py --gpu_num={사용할 gpu index, int} --experiment_name={테스트에 사용할 ckpt 폴더가 저장된 폴더}
    
-    python test.py --gpu_num=0 --experiment_name='resnet_anc2_casT_fpn3'
+    python test.py --gpu_num=0 --experiment_name='tina_iou_anc3_casT_fpn3'
     
 ### 3) 결과 저장
    10장 단위로 테스트 진행 과정을 출력하며, 테스트가 종료되면 테스트에 걸린 시간과 AP 결과를  ./experiments/{exp_name}/results/results.txt에 저장한다
