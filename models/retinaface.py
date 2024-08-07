@@ -51,7 +51,6 @@ class LandmarkHead(nn.Module):
 class IoUHead(nn.Module):
     def __init__(self, inchannels=512, num_anchors=3):
         super(IoUHead, self).__init__()
-        # self.conv1x1 = nn.Conv2d(num_anchors * 4, num_anchors * 1, kernel_size=(1, 1), stride=1, padding=0)
         self.conv1x1 = nn.Conv2d(inchannels, num_anchors * 1, kernel_size=(1, 1), stride=1, padding=0)
 
 
@@ -63,7 +62,7 @@ class IoUHead(nn.Module):
 
 
 class RetinaFace(nn.Module):
-    def __init__(self, phase='train', version='retina', anchor_num=2, use_inception=False, cascade=True):
+    def __init__(self, phase='train', version='retina', anchor_num=3, cascade=True):
         """
         :param cfg:  Network related settings.
         :param phase: train or test.
@@ -74,7 +73,6 @@ class RetinaFace(nn.Module):
         self.anchor_num = anchor_num
         self.network = 'resnet50'
         self.model_version = version
-        self.use_inception = use_inception
         self.cascade = cascade
 
         backbone = None
@@ -174,20 +172,16 @@ class RetinaFace(nn.Module):
 
         # Define context head module 2
         if self.cascade: 
-            if self.use_inception:
-                feature2_1 = self.Inception2(fpn[0])
-                feature2_2 = self.Inception2(fpn[1])
-                feature2_3 = self.Inception2(fpn[2])
-            else:
-                feature2_1 = self.ssh2_1(fpn[0])
-                feature2_2 = self.ssh2_2(fpn[1])
-                feature2_3 = self.ssh2_3(fpn[2])
+
+            feature2_1 = self.ssh2_1(fpn[0])
+            feature2_2 = self.ssh2_2(fpn[1])
+            feature2_3 = self.ssh2_3(fpn[2])
             features_2 = [feature2_1, feature2_2, feature2_3]
 
             classifications_2 = torch.cat([self.ClassHead_2[i](feature) for i, feature in enumerate(features_2)], dim=1)
             ldm_regressions_2 = torch.cat([self.LandmarkHead_2[i](feature) for i, feature in enumerate(features_2)], dim=1)
             if self.model_version == 'tina':
-                bbox_regressions_2 = torch.cat([self.BboxHead_2[i](feature) for i, feature in enumerate(features_2)], dim=1) # old?
+                bbox_regressions_2 = torch.cat([self.BboxHead_2[i](feature) for i, feature in enumerate(features_2)], dim=1) # old
                 iou_regressions_2 = torch.cat([self.IoUHead_2[i](feature) for i, feature in enumerate(features_2)], dim=1)
                 
                 # bbox_regressions_2 = [self.BboxHead_2[i].forward_shareiou(feature) for i, feature in enumerate(features_2)]

@@ -66,8 +66,7 @@ num_images = len(test_dataset)
 f.write("Number of test images: " + str(num_images) + "\n\n")
 
 # Set up Network
-# net = RetinaFace(phase='test')
-net = RetinaFace(phase='test', version=args.model_version, anchor_num=NUM_ANCHOR, use_inception=args.inception, cascade=args.cascade)
+net = RetinaFace(phase='test', version=args.model_version, anchor_num=NUM_ANCHOR, cascade=args.cascade)
 output_path = CKPT_DIR + NETWORK + '_' + WEIGHTS
 checkpoint = torch.load(output_path)
 f.write("Start loading weights...\n")
