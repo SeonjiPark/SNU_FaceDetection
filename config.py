@@ -20,10 +20,10 @@ def parse_training_args(parser):
     parser.add_argument('--inference_dir', type=str, default="sample_widerface/images/",
                         help='widerface, etc')
 
-    parser.add_argument('--experiment_name', type=str, default='resnet_anc2_casT_fpn3',
+    parser.add_argument('--experiment_name', type=str, default='tina_iou_anc3_casT_fpn3',
                         help='Experiment Name directory')
     
-    parser.add_argument('--model_version', type=str, default='retina',
+    parser.add_argument('--model_version', type=str, default='tina',
                         help='Model version whether retina or tina')
     
     parser.add_argument('--model_weight', type=str, default="ckpt-best.pth",

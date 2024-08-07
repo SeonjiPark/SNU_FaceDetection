@@ -32,7 +32,7 @@ def inference(args):
     EXP_NAME = args.experiment_name
     EXP_DIR = 'experiments/' + EXP_NAME
     CKPT_DIR = os.path.join(EXP_DIR, "ckpt/")
-    WEIGHTS = "ckpt-best.pth"
+    WEIGHTS = args.model_weight
 
     # Inference Parameters
     MS_INFERENCE = 1
@@ -40,6 +40,7 @@ def inference(args):
     NMS_THRESHOLD = 0.3
     SAVE_FOLDER = args.inference_save_folder
     SAVE_IMG = args.save_img
+    NUM_ANCHOR = args.num_anchor
 
     MASK = args.mask
     SAVE_MASK = args.save_mask
@@ -71,7 +72,7 @@ def inference(args):
     # f.write("Number of inference images: " + str(num_images) + "\n\n")
 
     # Set up Network
-    net = RetinaFace(phase='test')
+    net = RetinaFace(phase='test', version=args.model_version, anchor_num=NUM_ANCHOR, cascade=args.cascade)
     output_path = CKPT_DIR + NETWORK + '_' + WEIGHTS
     checkpoint = torch.load(output_path)
     # f.write("Start loading weights...\n")
@@ -130,9 +131,12 @@ def inference(args):
 
         # Forward
         fs_time = time()
-        _, out = net(img)
+        if args.cascade:
+            _, out = net(img)
+        else:
+            out, _ = net(img)
 
-        loc, conf, landms = out
+        loc, conf, landms, ious = out
         fe_time = time()
 
         # Decode
@@ -140,7 +144,7 @@ def inference(args):
         if args.infer_imsize_same:
             scores, boxes, landms = decode_output_inf(loc, conf, landms, prior_data, scale_box, scale_landm)
         else:
-            scores, boxes, landms = decode_output(img, loc, conf, landms, device)
+            scores, boxes, landms = decode_output(img, loc, conf, landms, device, NUM_ANCHOR)
         de_time = time()
 
         f_ftime += (fe_time - fs_time)
