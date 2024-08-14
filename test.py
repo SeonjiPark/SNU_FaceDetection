@@ -27,7 +27,7 @@ NETWORK = 'resnet50'
 GPU_NUM = args.gpu_num
 
 # Directory Parameters
-DATASET = "widerface/"
+DATASET = args.dataset
 EXP_NAME = args.experiment_name
 EXP_DIR = 'experiments/' + EXP_NAME
 CKPT_DIR = os.path.join(EXP_DIR, "ckpt/")
@@ -43,7 +43,7 @@ RES_DIR = 'experiments/' + EXP_NAME + '/results/'
 NUM_ANCHOR = args.num_anchor
 
 # Set up dataset
-test_dataset = Dataset('val', preproc(img_dim=None, rgb_means=(104, 117, 123)))
+test_dataset = Dataset(DATASET, 'val', preproc(img_dim=None, rgb_means=(104, 117, 123)))
 test_dataloader = DataLoader(dataset=test_dataset,
                              batch_size=1,
                              num_workers=4,
@@ -83,6 +83,8 @@ normal_metric = AverageMeter()
 FP_metric = AverageMeter()
 
 Start = time()
+hard_ap = []
+im_names = []
 for i, data in enumerate(test_dataloader):
 
     # Obtain data / to GPU
@@ -119,6 +121,8 @@ for i, data in enumerate(test_dataloader):
         medium_metric.update(ap)
     elif diff == 2:
         hard_metric.update(ap)
+        hard_ap.append(ap)
+        im_names.append(img_name)
     else:
         print("Invalid difficulty")
 
@@ -127,6 +131,7 @@ for i, data in enumerate(test_dataloader):
 End = time()
 f.write("Calculating process has done !\n")
 avg_metric = (easy_metric.sum() + medium_metric.sum() + hard_metric.sum()) / len(test_dataset)
+
 print('Avg AP : %.4f   Easy AP : %.4f   Medium AP : %.4f   Hard AP : %.4f' % (avg_metric, easy_metric.avg(), medium_metric.avg(), hard_metric.avg()))
 
 # Print Test Measures

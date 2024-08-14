@@ -47,7 +47,7 @@ class AverageMeter(object):
 
     def avg(self, idx=None):
         if self._count[0] == 0:
-            return 1000
+            return 0
         if idx is None:
             return self._sum[0] / self._count[0] if self.items is None else [
                 self._sum[i] / self._count[i] for i in range(self.n_items)
@@ -57,7 +57,7 @@ class AverageMeter(object):
 
     def sum(self, idx=None):
         if self._count[0] == 0:
-            return 1000
+            return 0
         else:
             return self._sum[0] if self.items is None else [
                 self._sum[i] for i in range(self.n_items)
