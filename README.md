@@ -3,6 +3,7 @@
 # Reference
 ### paper:
 [RetinaFace: Single-Shot Multi-Level Face Localisation in the Wild] (CVPR 2020)
+
 [TinaFace: Strong but Simple Baseline for Face Detection]
 
 https://openaccess.thecvf.com/content_CVPR_2020/html/Deng_RetinaFace_Single-Shot_Multi-Level_Face_Localisation_in_the_Wild_CVPR_2020_paper.html
