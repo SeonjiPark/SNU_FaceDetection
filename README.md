@@ -3,6 +3,7 @@
 # Reference
 ### paper:
 [RetinaFace: Single-Shot Multi-Level Face Localisation in the Wild] (CVPR 2020)
+[TinaFace: Strong but Simple Baseline for Face Detection]
 
 https://openaccess.thecvf.com/content_CVPR_2020/html/Deng_RetinaFace_Single-Shot_Multi-Level_Face_Localisation_in_the_Wild_CVPR_2020_paper.html
 
@@ -13,6 +14,13 @@ https://openaccess.thecvf.com/content_CVPR_2020/html/Deng_RetinaFace_Single-Shot
       pages={5203--5212},
       year={2020}
     }
+
+    @article{zhu2020tinaface,
+      title={Tinaface: Strong but simple baseline for face detection},
+      author={Zhu, Yanjia and Cai, Hongxiang and Zhang, Shuhan and Wang, Chenhao and Xiong, Yichao},
+      journal={arXiv preprint arXiv:2011.13183},
+      year={2020}
+   }
     
 ### code: 
 아래 github 의 아키텍쳐를 참고하여 multi-stage로 재현함
