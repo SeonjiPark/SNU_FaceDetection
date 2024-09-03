@@ -33,7 +33,7 @@ def parse_training_args(parser):
     parser.add_argument('--num_anchor', type=int, default=3,
                         help='Number of anchor - should be 2 or 3')
     
-    parser.add_argument('--landmark_loss', type=str2bool, default=False,
+    parser.add_argument('--landmark_loss', type=str2bool, default=True,
                         help='whether to use landmark loss or not')
     
     parser.add_argument('--cascade', type=str2bool, default=True,
